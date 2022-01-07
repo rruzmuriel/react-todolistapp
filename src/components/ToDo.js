@@ -1,10 +1,9 @@
 import React from 'react';
 
-export const ToDo = ({todo}) => {
+export const ToDo = ({taskToDo, handleToggle}) => {
     return (
-        <div>
-            {todo.task}
-            
+        <div onClick={() => handleToggle(taskToDo.id)} className={taskToDo.complete ? 'strike' : ''} >
+            {taskToDo.task}            
         </div>
     )
 }
