@@ -2,22 +2,35 @@
 
 import React, { useState } from 'react';
 
-export const ToDoForm = () => {
+export const ToDoForm = ({addNewTask}) => {
 
-    const handleChange = (e) => {
-        setUserInput(e.currentTarget.value)
+    const [task, setTask] = useState('');
+
+    const handleChange = (event) => {
+        let newTask = event.target.value;
+        setTask(newTask)        
     }
 
-    const [userInput, setUserInput] = useState('');
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        addNewTask(task)
+        setTask('')
+    }
+    
     return (
-        <div>
-            <input value={userInput}
-                    type="text"
-                    onChange={handleChange}
-                    placeholder="Introduce la tarea."
+        <form onSubmit={handleSubmit} className="mt-3">
+            <input
+                value={task}                
+                type="text"
+                placeholder="Introduce la tarea."
+                onChange={handleChange}
             >
             </input>
-            
-        </div>
+            <input
+                className="ms-1"
+                type="submit"
+            >
+            </input>
+        </form>
     )
 }
